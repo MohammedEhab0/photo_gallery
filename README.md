@@ -1,5 +1,5 @@
 # Clone the project
-git clone https://github.com/your-username/photo_gallery.git
+git clone https://github.com/MohammedEhab0/photo_gallery.git
 cd photo_gallery
 
 # Install dependencies
