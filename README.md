@@ -17,13 +17,13 @@ A Flutter application that displays a curated list of photos using the [Pexels A
 
 ## 📷 Screenshots
 
-| State | Light Mode | Dark Mode |
-|------|-------------|-----------|
-| **Photo List (Online)** | ![Online Light](screenshots/online_light.png) | ![Online Dark](screenshots/online_dark.png) |
-| **Photo List (Offline / Cached)** | ![Offline Light](screenshots/offline_light.png) | ![Offline Dark](screenshots/offline_dark.png) |
-| **Loading State** | ![Loading](screenshots/loading.png) |  |
-| **Error State** | ![Error](screenshots/error.png) | |
-| **Network Status Banner** | ![Offline Banner](screenshots/offline_banner.png) | ![Online Banner](screenshots/online_banner.png) |
+| State | Light Mode                                        | Dark Mode |
+|------|---------------------------------------------------|-----------|
+| **Photo List (Online)** | ![Online Light](screenshots/online_light.jpg)     | ![Online Dark](screenshots/online_dark.jpg) |
+| **Photo List (Offline / Cached)** | ![Offline Light](screenshots/offline_light.jpg)   | ![Offline Dark](screenshots/offline_dark.jpg) |
+| **Loading State** | ![Loading](screenshots/loading.jpg)               |  |
+| **Error State** | ![Error](screenshots/error.jpg)                   | |
+| **Network Status Banner** | ![Offline Banner](screenshots/offline_banner.jpg) | ![Online Banner](screenshots/online_banner.jpg) |
 
 > 💡 Make sure your `screenshots/` folder contains the images above using the correct names.
 
