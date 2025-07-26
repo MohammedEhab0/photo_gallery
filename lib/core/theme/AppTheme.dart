@@ -6,7 +6,8 @@ import 'AppStyle.dart';
 
 class AppTheme {
   static final ThemeData darkTheme = ThemeData(
-      secondaryHeaderColor: AppColors.primaryDark,
+    appBarTheme: AppBarTheme(color:AppColors.primaryDark ),
+      secondaryHeaderColor: AppColors.primarylight,
       primaryColor: AppColors.primaryDark,
       scaffoldBackgroundColor: AppColors.primaryDark,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -15,7 +16,8 @@ class AppTheme {
           selectedLabelStyle: AppStyle.bold12White,
           unselectedLabelStyle: AppStyle.bold12White));
   static final ThemeData lightTheme = ThemeData(
-      secondaryHeaderColor: AppColors.white,
+      appBarTheme: AppBarTheme(color:AppColors.primarylight ),
+      secondaryHeaderColor: AppColors.primaryDark,
       primaryColor: AppColors.primarylight,
       scaffoldBackgroundColor: AppColors.backgroundlight,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

@@ -26,6 +26,9 @@ import 'package:photo_gallery/data/repositories/photo_repository_impl.dart'
     as _i669;
 import 'package:photo_gallery/domain/repositories/photo_repository.dart'
     as _i624;
+import 'package:photo_gallery/domain/usecases/get_photos_usecase.dart' as _i990;
+import 'package:photo_gallery/view/photo_list_screen/photo_list_cubit.dart'
+    as _i498;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -39,20 +42,22 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final hiveModule = _$HiveModule();
-    gh.lazySingleton<_i221.PhotoRemoteDataSource>(
+    gh.lazySingleton<_i533.ApiManager>(() => _i533.ApiManager());
+    gh.factory<_i221.PhotoRemoteDataSource>(
         () => _i713.PhotoRemoteDataSourceImpl(gh<_i533.ApiManager>()));
+    gh.factory<_i624.PhotoRepository>(
+        () => _i669.PhotoRepositoryImpl(gh<_i221.PhotoRemoteDataSource>()));
     await gh.factoryAsync<_i979.Box<_i1053.PhotoModel>>(
       () => hiveModule.photoBox,
       instanceName: 'photosBox',
       preResolve: true,
     );
-    gh.lazySingleton<_i544.PhotoLocalDataSource>(() =>
-        _i880.PhotoLocalDataSourceImpl(
-            gh<_i979.Box<_i1053.PhotoModel>>(instanceName: 'photosBox')));
-    gh.lazySingleton<_i624.PhotoRepository>(() => _i669.PhotoRepositoryImpl(
-          remoteDataSource: gh<_i221.PhotoRemoteDataSource>(),
-          localDataSource: gh<_i544.PhotoLocalDataSource>(),
-        ));
+    gh.factory<_i498.PhotoListCubit>(
+        () => _i498.PhotoListCubit(gh<_i624.PhotoRepository>()));
+    gh.factory<_i990.GetPhotosUseCase>(
+        () => _i990.GetPhotosUseCase(gh<_i624.PhotoRepository>()));
+    gh.factory<_i544.PhotoLocalDataSource>(() => _i880.PhotoLocalDataSourceImpl(
+        gh<_i979.Box<_i1053.PhotoModel>>(instanceName: 'photosBox')));
     return this;
   }
 }

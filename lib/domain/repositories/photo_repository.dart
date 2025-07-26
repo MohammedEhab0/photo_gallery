@@ -1,7 +1,6 @@
+import '../../data/models/photo_model.dart';
 
-
-import '../entities/photo_entity.dart';
 
 abstract class PhotoRepository {
-  Future<List<PhotoEntity>> getPhotos();
+  Future<List<PhotoModel>> fetchPhotos();
 }

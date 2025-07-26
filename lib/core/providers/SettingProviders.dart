@@ -4,10 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingProviders extends ChangeNotifier {
 
-  ThemeMode themeMode = ThemeMode.light;
+  ThemeMode themeMode = ThemeMode.dark;
 
   SettingProviders() {
-
   }
 
   void changeTheme(ThemeMode newThemeMode) async {

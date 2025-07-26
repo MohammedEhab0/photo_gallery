@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import '../../models/photo_model.dart';
 import 'photo_local_data_source.dart';
 
-@LazySingleton(as: PhotoLocalDataSource)
+@Injectable(as: PhotoLocalDataSource)
 class PhotoLocalDataSourceImpl implements PhotoLocalDataSource {
   final Box<PhotoModel> _photoBox;
 

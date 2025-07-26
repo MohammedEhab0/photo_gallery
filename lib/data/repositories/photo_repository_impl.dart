@@ -1,44 +1,44 @@
-// data/repositories/photo_repository_impl.dart
-
+import 'dart:io';
 import 'package:injectable/injectable.dart';
-import '../../domain/entities/photo_entity.dart';
-import '../../domain/repositories/photo_repository.dart';
-import '../datasources/local/photo_local_data_source.dart';
-import '../datasources/remote/photo_remote_data_source.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-@LazySingleton(as: PhotoRepository)
+import '../../domain/repositories/photo_repository.dart';
+import '../datasources/remote/photo_remote_data_source.dart';
+import '../models/photo_model.dart';
+
+
+@Injectable(as: PhotoRepository)
 class PhotoRepositoryImpl implements PhotoRepository {
   final PhotoRemoteDataSource remoteDataSource;
-  final PhotoLocalDataSource localDataSource;
 
-  PhotoRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
-  });
+  PhotoRepositoryImpl(this.remoteDataSource);
+
+  Box<PhotoModel> get _photoBox => Hive.box<PhotoModel>('photosBox');
 
   @override
-  Future<List<PhotoEntity>> getPhotos() async {
-    try {
-      // Try to get remote data first
-      final photos = await remoteDataSource.getCuratedPhotos();
-      await localDataSource.cachePhotos(photos);
+  Future<List<PhotoModel>> fetchPhotos() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+    final isOnline = connectivityResult != ConnectivityResult.none;
 
-      return photos.map((e) => PhotoEntity(
-        id: e.id,
-        photographer: e.photographer,
-        imageUrl: e.src.medium,
-        alt: e.alt,
-      )).toList();
-    } catch (e) {
-      // Fallback to local if offline or error occurs
-      final cachedPhotos = await localDataSource.getCachedPhotos();
-
-      return cachedPhotos.map((e) => PhotoEntity(
-        id: e.id,
-        photographer: e.photographer,
-        imageUrl: e.src.medium,
-        alt: e.alt,
-      )).toList();
+    if (isOnline) {
+      try {
+        final photos = await remoteDataSource.getCuratedPhotos();
+        await _photoBox.clear();
+        await _photoBox.addAll(photos);
+        return photos;
+      } on SocketException catch (_) {
+        if (_photoBox.isNotEmpty) {
+          return _photoBox.values.toList();
+        }
+        rethrow;
+      }
+    } else {
+      if (_photoBox.isNotEmpty) {
+        return _photoBox.values.toList();
+      } else {
+        throw Exception('No internet and no cached data available');
+      }
     }
   }
 }

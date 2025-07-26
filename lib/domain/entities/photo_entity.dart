@@ -1,15 +1,15 @@
-// domain/entities/photo_entity.dart
-
 class PhotoEntity {
   final int id;
   final String photographer;
-  final String imageUrl;
+  final String originalUrl;
+  final String mediumUrl;
   final String alt;
 
-  const PhotoEntity({
+  PhotoEntity({
     required this.id,
     required this.photographer,
-    required this.imageUrl,
+    required this.originalUrl,
+    required this.mediumUrl,
     required this.alt,
   });
 }

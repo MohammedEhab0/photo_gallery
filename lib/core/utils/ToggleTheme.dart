@@ -19,22 +19,22 @@ class ToggleTheme extends StatelessWidget {
       second: true,
       height: 40,
       style: ToggleStyle(
-        backgroundColor: AppColors.primarylight.withOpacity(0.2),
-        borderColor: AppColors.primarylight,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
+        borderColor: AppColors.gray,
         borderRadius: BorderRadius.circular(20),
-        indicatorColor: AppColors.primarylight,
+        indicatorColor: Theme.of(context).primaryColor,
       ),
       onChanged: (val) {
         settingProviders.changeTheme(val ? ThemeMode.dark : ThemeMode.light);
       },
       iconBuilder: (val) => Icon(
         val ? Icons.nightlight : Icons.sunny,
-        color: AppColors.white,
+        color: Theme.of(context).secondaryHeaderColor,
         size: 20,
       ),
       textBuilder: (val) => Text(
         val ? 'dark' : 'light',
-        style: AppStyle.bold16White,
+        style: AppStyle.bold16White.copyWith(color: Theme.of(context).primaryColor),
       ),
     );
   }

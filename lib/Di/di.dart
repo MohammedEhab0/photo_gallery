@@ -1,12 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'di.config.dart'; // this must be generated with build_runner
+import 'di.config.dart';
 
 final getIt = GetIt.instance;
 
 @injectableInit
-Future<void> configureDependencies() async {
-  await getIt.init(); // do NOT return this directly without await
-
+Future<void> init() async {
+  await getIt.init(); // this auto-registers using the generated code
 }
-

@@ -8,7 +8,7 @@ import '../../../core/api/ApiManager.dart';
 import '../../models/photo_model.dart';
 import 'photo_remote_data_source.dart';
 
-@LazySingleton(as: PhotoRemoteDataSource)
+@Injectable(as: PhotoRemoteDataSource)
 class PhotoRemoteDataSourceImpl implements PhotoRemoteDataSource {
   final ApiManager apiManager;
 
