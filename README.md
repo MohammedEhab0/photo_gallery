@@ -23,7 +23,7 @@ A Flutter application that displays a curated list of photos using the [Pexels A
 | **Photo List (Offline / Cached)** | ![Offline Light](screenshots/offline_light.jpg)   | ![Offline Dark](screenshots/offline_dark.jpg) |
 | **Loading State** | ![Loading](screenshots/loading.jpg)               |  |
 | **Error State** | ![Error](screenshots/error.jpg)                   | |
-| **Network Status Banner** | ![Offline Banner](screenshots/offline_banner.jpg) | ![Online Banner](screenshots/online_banner.jpg) |
+| **Network Status Banner** | ![Offline Banner](screenshots/offline_light.jpg) | ![Online Banner](screenshots/online_dark.jpg) |
 
 > 💡 Make sure your `screenshots/` folder contains the images above using the correct names.
 
