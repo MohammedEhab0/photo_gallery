@@ -6,7 +6,7 @@ import 'Di/di.dart';
 import 'core/providers/SettingProviders.dart';
 import 'core/theme/AppTheme.dart';
 import 'data/models/photo_model.dart';
-import 'view/photo_list_screen/photo_list_screen.dart';
+import 'presentation/photo_list_screen/photo_list_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
